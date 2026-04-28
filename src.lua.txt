@@ -607,6 +607,14 @@ function Library:_CreateMainv0rtexd()
     CreateCorner(self.container, 5)
     CreateStroke(self.container)
 
+local softGlow = Instance.new("UIStroke")
+softGlow.Thickness = 30
+softGlow.Transparency = 0.93
+softGlow.Color = c.Text
+softGlow.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+softGlow.LineJoinMode = Enum.LineJoinMode.Round
+softGlow.Parent = self.container
+
     self.topBar = CreateInstance("Frame", {
         Name = "TopBar",
         BackgroundTransparency = 1,
