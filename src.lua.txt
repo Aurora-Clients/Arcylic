@@ -273,7 +273,7 @@ function AcrylicBlur:_CreateRoot()
         CanCollide = false,
         CanQuery = false,
         Locked = true,
-        CastShadow = false,
+        CastShadow = true,
         Transparency = 0.95, 
         Parent = self._folder
     })
@@ -594,37 +594,20 @@ function Library:_CreateMainv0rtexd()
         ResetOnSpawn = false
     })
 
-    -- SHADOW (PRIMERO)
-    local shadow = Instance.new("Frame")
-    shadow.Name = "Shadow"
-    shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-    shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-    shadow.Size = UDim2.new(0, s.v0rtexd.Width + 30, 0, s.v0rtexd.Height + 30)
-    shadow.BackgroundColor3 = c.Accent or c.Text
-    shadow.BackgroundTransparency = 0.88
-    shadow.BorderSizePixel = 0
-    shadow.ZIndex = 0
-    shadow.Parent = self.screenGui
+   self.container = CreateInstance("Frame", {
+    Name = "Container",
+    BackgroundColor3 = c.Background,
+    BackgroundTransparency = 0.05,
+    Position = UDim2.new(0.5, -s.v0rtexd.Width / 2, 0.5, -s.v0rtexd.Height / 2),
+    BorderSizePixel = 0,
+    Size = UDim2.new(0, s.v0rtexd.Width, 0, s.v0rtexd.Height),
+    ClipsDescendants = false,
+    Parent = self.screenGui
+})
 
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 8)
-    corner.Parent = shadow
+CreateCorner(self.container, 5)
+CreateStroke(self.container)
 
-    -- CONTAINER (ENCIMA DEL SHADOW)
-    self.container = CreateInstance("Frame", {
-        Name = "Container",
-        BackgroundColor3 = c.Background,
-        BackgroundTransparency = 0.05,
-        Position = UDim2.new(0.5, -s.v0rtexd.Width / 2, 0.5, -s.v0rtexd.Height / 2),
-        BorderSizePixel = 0,
-        Size = UDim2.new(0, s.v0rtexd.Width, 0, s.v0rtexd.Height),
-        ClipsDescendants = false,
-        ZIndex = 1,
-        Parent = self.screenGui
-    })
-
-    CreateCorner(self.container, 5)
-    CreateStroke(self.container)
     self.topBar = CreateInstance("Frame", {
         Name = "TopBar",
         BackgroundTransparency = 1,
