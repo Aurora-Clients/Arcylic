@@ -11,19 +11,19 @@ local n = "Acrylic"
 local c = {
     Background = Color3.fromRGB(12, 12, 12),
     Secondary = Color3.fromRGB(20, 20, 20),
-    Border = Color3.fromRGB(217, 0, 255),
+    Border = Color3.fromRGB(39, 39, 39),
     Text = Color3.fromRGB(255, 255, 255),
     TextDark = Color3.fromRGB(93, 93, 93),
-    TextFade = Color3.fromRGB(100, 100, 100),
-    Accent = Color3.fromRGB(217, 0, 255),
+    TextFade = Color3.fromRGB(9, 9, 9),
+    Accent = Color3.fromRGB(255, 255, 255),
     Toggle = {
-        Enabled = Color3.fromRGB(217, 0, 255),
+        Enabled = Color3.fromRGB(255, 255, 255),
         Disabled = Color3.fromRGB(32, 32, 32),
         Circle = Color3.fromRGB(20, 20, 20)
     },
     Notification = {
-        Background = Color3.fromRGB(20, 20, 20),
-        Border = Color3.fromRGB(217, 0, 255),
+        Background = Color3.fromRGB(11, 11, 11),
+        Border = Color3.fromRGB(26, 26, 26),
         Timer = Color3.fromRGB(255, 255, 255)
     }
 }
@@ -97,7 +97,7 @@ end
 
 local function CreateCorner(parent, radius)
     return CreateInstance("UICorner", {
-        CornerRadius = UDim.new(0, 10),
+        CornerRadius = UDim.new(0, radius or 5),
         Parent = parent
     })
 end
@@ -273,7 +273,7 @@ function AcrylicBlur:_CreateRoot()
         CanCollide = false,
         CanQuery = false,
         Locked = true,
-        CastShadow = true,
+        CastShadow = false,
         Transparency = 0.95, 
         Parent = self._folder
     })
@@ -388,7 +388,7 @@ local function CreateNotificationContainer(screenGui)
     if NotificationContainer then return NotificationContainer end
     NotificationContainer = CreateInstance("Frame", {
         Name = "NotificationContainer",
-        BackgroundTransparency = 0.4,
+        BackgroundTransparency = 1,
         Position = UDim2.new(1, -240, 0, 20),
         Size = UDim2.new(0, 220, 1, -40),
         Parent = screenGui
@@ -594,19 +594,18 @@ function Library:_CreateMainv0rtexd()
         ResetOnSpawn = false
     })
 
-   self.container = CreateInstance("Frame", {
-    Name = "Container",
-    BackgroundColor3 = c.Background,
-    BackgroundTransparency = 0.05,
-    Position = UDim2.new(0.5, -s.v0rtexd.Width / 2, 0.5, -s.v0rtexd.Height / 2),
-    BorderSizePixel = 0,
-    Size = UDim2.new(0, s.v0rtexd.Width, 0, s.v0rtexd.Height),
-    ClipsDescendants = false,
-    Parent = self.screenGui
-})
-
-CreateCorner(self.container, 5)
-CreateStroke(self.container)
+    self.container = CreateInstance("Frame", {
+        Name = "Container",
+        BackgroundColor3 = c.Background,
+        BackgroundTransparency = 0.05,
+        Position = UDim2.new(0.5, -s.v0rtexd.Width / 2, 0.5, -s.v0rtexd.Height / 2),
+        BorderSizePixel = 0,
+        Size = UDim2.new(0, s.v0rtexd.Width, 0, s.v0rtexd.Height),
+        ClipsDescendants = false,
+        Parent = self.screenGui
+    })
+    CreateCorner(self.container, 5)
+    CreateStroke(self.container)
 
     self.topBar = CreateInstance("Frame", {
         Name = "TopBar",
