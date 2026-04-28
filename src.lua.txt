@@ -97,7 +97,7 @@ end
 
 local function CreateCorner(parent, radius)
     return CreateInstance("UICorner", {
-        CornerRadius = UDim.new(0, radius or 5),
+        CornerRadius = UDim.new(0, radius or 10),
         Parent = parent
     })
 end
